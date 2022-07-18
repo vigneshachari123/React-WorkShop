@@ -14,28 +14,8 @@ interface postsStateType {
 //creating state for UserList
  interface userStateType {
     users : User[];
+    user?: User
 }
 export const userState = proxy<userStateType>({
-users:[],
-})
-
-//creating state for userdetails 
-
-interface userDetailsStateType{
-    userDetails : User
-}
-export const userDetailsState = proxy<userDetailsStateType>({
-    userDetails:{ id: 0,
-        phone:    "",
-        website: "",
-        name:     "",
-        email:   "" ,
-        username: ""
-    }
-})
-
-// crarte state highlight text
-
-export const UserTextHighlightState =  proxy({
-    userid : 0
+users:[]
 })

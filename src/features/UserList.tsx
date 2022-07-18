@@ -19,7 +19,7 @@ export const UserList = () => {
       <h1>Users</h1>
       <ul className="list-group">
         {users.map((u) => (
-          <UserItems item={u} />
+          <UserItems user={u} />
         ))}
       </ul>
     </div>

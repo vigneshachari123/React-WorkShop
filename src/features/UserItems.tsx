@@ -3,31 +3,27 @@ import { UserManager } from "../manager/UserManager";
 import { User } from "../model";
 import { PostsManager } from "./../manager/PostsManager";
 import { useSnapshot } from "valtio";
-import { UserTextHighlightState } from "../store";
-import { Statemanager } from "../manager/StateManager";
+import { userState } from "../store";
 
 interface Usertype {
-  item: User;
+  user: User;
 }
 
-export const UserItems = (item: Usertype) => {
-  const selected = useSnapshot(UserTextHighlightState);
-  const LoadUserDetails = async (id: number) => {
-    await UserManager.getUserById(id);
-    await PostsManager.getAllPosts(id);
+export const UserItems = ({ user }: Usertype) => {
+  const { user: userData } = useSnapshot(userState);
+  const isSelected = userData?.id === user.id;
 
-    // to make text hightlight update the id
-    Statemanager.settextHighlight(id);
+  const LoadUserDetails = async () => {
+    await UserManager.getUserById(user.id);
+    await PostsManager.getAllPosts(user);
   };
 
   return (
     <li
-      className={`list-group-item${
-        selected.userid === item.item.id ? " active" : " "
-      }`}
-      onClick={() => LoadUserDetails(item.item.id)}
+      className={`list-group-item${isSelected ? " active" : " "}`}
+      onClick={() => LoadUserDetails()}
     >
-      {item.item.name}
+      {user.name}
     </li>
   );
 };

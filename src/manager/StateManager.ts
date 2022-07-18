@@ -1,4 +1,4 @@
-import { postsState,  userDetailsState, UserTextHighlightState } from '../store/index';
+import { postsState,  userState, } from '../store/index';
 import { postsType, User } from './../model/index';
 
 
@@ -7,11 +7,11 @@ static setPostList = (postsList:postsType[]) => {
     postsState.postsList = postsList;
 }
 
-static setUserDetail =  (userDetails:User ) => {
-    userDetailsState.userDetails = userDetails 
+static setUsers =  (users : User[] ) => {
+    userState.users = users
 }
 
-static settextHighlight =  (num:number) =>{
-    UserTextHighlightState.userid =  num
+static setUserDetail =  (userDetails:User ) => {
+    userState.user = userDetails 
 }
 }
